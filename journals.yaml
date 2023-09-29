@@ -1,2 +1,4 @@
-- journal: Cancer Cell
+- name: Cancer Cell
   rss: https://www.cell.com/cancer-cell/inpress.rss
+- name: Nature Cancer
+  rss: https://www.nature.com/natcancer/inpress.rss
