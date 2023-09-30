@@ -77,12 +77,18 @@ def main(*, yaml_file, output_file, seen_file):
 
         articles[journal] = feed_items
     
-    with open(output_file, "w") as fout:
-        json.dump(articles, fout)
+    time_of_run = datetime.datetime.now().isoformat()
+    
+    with open(output_file, "a") as fout:
+        outdata = {
+            "time_of_run": time_of_run,
+            "articles": articles
+        }
+        fout.write(f"{json.dumps(outdata)}\n")
     
     # track seen articles
     with open(seen_file, "a") as fout:
-        fout.write(f"## new articles from: {datetime.datetime.now().isoformat()}\n")
+        fout.write(f"## new articles from: {time_of_run}\n")
         for article_id in new_article_ids:
             fout.write(f"{article_id}\n")
 
