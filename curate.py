@@ -29,7 +29,7 @@ def get_articles_from_file(articles_json):
         last_line = line
         articles = json.loads(last_line.strip())
 
-    return articles["articles", articles["time_of_run"]
+    return articles["articles"], articles["time_of_run"]
 
 
 def get_openai_response(article, interests, model):
@@ -83,10 +83,16 @@ def main(*, articles_json, output_file, interests_yaml, openai_model):
             resp = get_openai_response(article, interests, openai_model)
             ans = resp["choices"][0]["message"]["content"]
 
-            recommend, reason = map(lambda f: f.strip(), ans.split("\n"))
-            print(article["title"])
-            print(ans)
-            print()
+            # print(article["title"])
+            # print(ans)
+            # print()
+
+            try:
+                recommend, reason = map(lambda f: f.strip(), ans.split("\n"))
+                recommend = recommend.lower()
+            except:
+                print(f"Could not get properly shaped recommendation from {openai_model}.")
+                print(ans)
 
             article["recommendation"] = recommend
             article["reason"] = reason
@@ -97,7 +103,7 @@ def main(*, articles_json, output_file, interests_yaml, openai_model):
             "time_of_run": time_of_run,
             "articles": articles,
         }
-        json.dumps(articles, fout)
+        fout.write(f"{json.dumps(articles)}\n")
     print("[i] finished curation.")
 
 
@@ -107,7 +113,7 @@ if __name__ == "__main__":
     parser.add_argument("--articles-json", default="articles.json")
     parser.add_argument("--output-file", default="docs/curated.json")
     parser.add_argument("--interests-yaml", default="interests.yaml")
-    parser.add_argument("--openai-model", default="gpt-3.5-turbo")
+    parser.add_argument("--openai-model", default="gpt-4")
 
     args = parser.parse_args()
 
