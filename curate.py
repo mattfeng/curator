@@ -103,7 +103,7 @@ def main(*, articles_json, output_file, interests_yaml, openai_model):
             "time_of_run": time_of_run,
             "articles": articles,
         }
-        fout.write(f"{json.dumps(articles)}\n")
+        fout.write(f"{json.dumps(outdata)}\n")
     print("[i] finished curation.")
 
 
