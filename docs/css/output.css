@@ -539,6 +539,16 @@ video {
   margin-right: auto;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .ml-4 {
   margin-left: 1rem;
 }
@@ -584,6 +594,16 @@ video {
   padding-bottom: 1rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 .text-justify {
   text-align: justify;
 }
@@ -596,6 +616,11 @@ video {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .font-bold {
@@ -616,37 +641,44 @@ video {
   text-decoration-line: underline;
 }
 
-@media (min-width: 768px) {
-  .md\:container {
+html {
+  font-size: 26px;
+  @media (min-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:container {
     width: 100%;
   }
 
   @media (min-width: 640px) {
-    .md\:container {
+    .sm\:container {
       max-width: 640px;
     }
   }
 
   @media (min-width: 768px) {
-    .md\:container {
+    .sm\:container {
       max-width: 768px;
     }
   }
 
   @media (min-width: 1024px) {
-    .md\:container {
+    .sm\:container {
       max-width: 1024px;
     }
   }
 
   @media (min-width: 1280px) {
-    .md\:container {
+    .sm\:container {
       max-width: 1280px;
     }
   }
 
   @media (min-width: 1536px) {
-    .md\:container {
+    .sm\:container {
       max-width: 1536px;
     }
   }
